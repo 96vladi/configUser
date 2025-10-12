@@ -1,24 +1,47 @@
 server:
   port: 8080
-
-spring:
-  application:
-    name: api-gateway
-
+  
 eureka:
   client:
+    fetch-registry: true
+    register-with-eureka: true
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      default-zone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
 
 spring:
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true
       routes:
+        # USER-SERVICE
         - id: user-service
           uri: lb://user-service
           predicates:
-            - Path=/user/**
-        - id: evaluation-service
-          uri: lb://evaluation-service
+            - Path=/user/api/v1/**
+          filters:
+            - RewritePath=/user/api/v1/(?<remaining>.*), /user-service/api/v1/${remaining}
+        # PROGRAM-ADMIN-SERVICE
+        - id: program-admin-service
+          uri: lb://program-admin-service
           predicates:
-            - Path=/evaluation/**
+            - Path=/api/v1/applications/**
+        # NOTIFICATION SERVICE
+        # EVALUATION-SERVICE
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allow-credentials: true
+            allowedOriginPatterns: "*"
+            allowedHeaders: "*"
+            allowedMethods:
+              - OPTIONS
+              - HEAD
+              - GET
+              - PUT
+              - POST
+              - DELETE
+              - PATCH            
