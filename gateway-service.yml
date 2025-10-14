@@ -23,6 +23,10 @@ spring:
           predicates:
             - Path=/api/v1/applications/**
         # NOTIFICATION SERVICE
+        - id: notification-service
+          uri: lb://notification-service
+          predicates:
+            - Path=/api/v1/notifications/**
         # EVALUATION-SERVICE
       globalcors:
         cors-configurations:
