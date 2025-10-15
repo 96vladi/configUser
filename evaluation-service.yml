@@ -1,0 +1,38 @@
+evaluation-service:
+  property: Evaluation Profile Dev
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://${DB_USER_MONGO}:${DB_PASSWORD_MONGO}@${DB_HOST_MONGO}:${DB_PORT_MONGO}/${DB_NAME_MONGO}?authSource=admin
+      host: ${DB_HOST_MONGO}
+      port: ${DB_PORT_MONGO}
+      database: ${DB_NAME_MONGO}
+      username: ${DB_USER_MONGO}
+      password: ${DB_PASSWORD_MONGO}
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tg_assignments_db
+    host: ${DB_HOST_POSTGRES}
+    database: ${DB_NAME_POSTGRES}
+    port: ${DB_PORT_POSTGRES}
+    username: ${DB_USER_POSTGRES}
+    password: ${DB_PASSWORD_POSTGRES}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    generate-ddl: true
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      default-zone: http://localhost:8761/eureka/
+
+server:
+  port: 8083

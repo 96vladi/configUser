@@ -1,0 +1,51 @@
+user-service:
+  property: User Profile Dev
+    
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/tg_user_service_db
+    username: ${DB_USER_POSTGRES}
+    password: ${DB_PASSWORD_POSTGRES}
+    host: ${DB_HOST_POSTGRES}
+    database: ${DB_NAME_POSTGRES}
+    port: ${DB_PORT_POSTGRES}
+    
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    
+  messages:
+    basename: messages
+    encoding: UTF-8
+    fallback-to-system-locale: false
+    use-code-as-default-message: true
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      default-zone: http://localhost:8761/eureka/
+
+server:
+  port: 8081
+
+application:
+  security:
+    jwt:
+      secret-key: ${JWT_SECRET_KEY}
+      expiration: ${JWT_EXPIRATION_MS} 
+      refresh-token:
+        expiration: ${JWT_REFRESH_EXPIRATION_MS} 
+      
+admin:
+  initial:
+    email: ${ADMIN_INITIAL_EMAIL:super.admin@dh.com.bo}
+    password: ${ADMIN_INITIAL_PASSWORD:S3cureD3faultP@ssw0rd!}

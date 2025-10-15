@@ -28,6 +28,12 @@ spring:
           predicates:
             - Path=/api/v1/notifications/**
         # EVALUATION-SERVICE
+        - id: evaluation-service
+          uri: lb://evaluation-service
+          predicates:
+            - Path=/evaluation/api/v1/**
+          filters:
+            - RewritePath=/evaluation/api/v1/(?<remaining>.*), /evaluation-service/api/v1/${remaining}
       globalcors:
         cors-configurations:
           '[/**]':

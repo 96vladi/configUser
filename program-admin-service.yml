@@ -15,9 +15,9 @@ spring:
       properties:
         spring.json.trusted.packages: '*'
   datasource:
-    url: jdbc:postgresql://localhost:5432/program_admin
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: jdbc:postgresql://localhost:5432/tg_program_admin_db
+    username: ${DB_USER_POSTGRES}
+    password: ${DB_PASSWORD_POSTGRES}
     driver-class-name: org.postgresql.Driver
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
