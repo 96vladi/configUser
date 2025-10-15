@@ -1,0 +1,25 @@
+services:
+  mongo_tg_evaluations_db:
+    image: mongo:6.0.6
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USER_MONGO}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD_MONGO}
+    volumes:
+      - ./mongo:/data/db
+    ports:
+      - 27017:27017
+
+  postgres_services_db:
+    image: postgres:16
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER_POSTGRES}
+      POSTGRES_PASSWORD: ${DB_PASSWORD_POSTGRES}
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+      - ./init:/docker-entrypoint-initdb.d
+    ports:
+      - 5432:5432
+volumes:
+  pgdata:
