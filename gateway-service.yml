@@ -14,7 +14,8 @@ spring:
         - id: user-service
           uri: lb://user-service
           predicates:
-            - Path=/users/**
+            - Path=/api/v1/users/**
+
         # PROGRAM-ADMIN-SERVICE
         - id: program-admin-service
           uri: lb://program-admin-service
@@ -29,7 +30,10 @@ spring:
         - id: evaluation-service
           uri: lb://evaluation-service
           predicates:
-            - Path=/evaluation/api/v1/**
+            - Path=/api/v1/evaluations/**
+          filters:
+            - RewritePath=/evaluation/api/v1/(?<remaining>.*), /api/v1/${remaining}
+
       globalcors:
         cors-configurations:
           '[/**]':
