@@ -15,7 +15,7 @@ spring:
       properties:
         spring.json.trusted.packages: '*'
   datasource:
-    url: jdbc:postgresql://localhost:5432/tg_program_admin_db
+    url: jdbc:postgresql://localhost:5433/tg_program_admin_db
     username: ${DB_USER_POSTGRES}
     password: ${DB_PASSWORD_POSTGRES}
     driver-class-name: org.postgresql.Driver
