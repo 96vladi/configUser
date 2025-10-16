@@ -11,7 +11,7 @@ spring:
       username: ${DB_USER_MONGO}
       password: ${DB_PASSWORD_MONGO}
   datasource:
-    url: jdbc:postgresql://localhost:5432/tg_assignments_db
+    url: jdbc:postgresql://localhost:5433/tg_assignments_db
     host: ${DB_HOST_POSTGRES}
     database: ${DB_NAME_POSTGRES}
     port: ${DB_PORT_POSTGRES}
