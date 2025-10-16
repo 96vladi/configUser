@@ -16,7 +16,7 @@ spring:
           predicates:
             - Path=/users/**
           filters:
-            - RewritePath=/users/(?<remaining>.*)=/${remaining}
+            - RewritePath=/users/(?<remaining>.*)/user-service/${remaining}
         # PROGRAM-ADMIN-SERVICE
         - id: program-admin-service
           uri: lb://program-admin-service
